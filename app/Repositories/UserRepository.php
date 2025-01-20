@@ -23,4 +23,12 @@ class UserRepository
             ->paginate($request->rows ?? 100)
             ->appends($request->all());
     }
+
+    /**
+     * @var string $userId
+     */
+    public function existsByUserId(string $userId): bool
+    {
+        return $this->model->where('id', $userId)->exists();
+    }
 }
