@@ -24,7 +24,6 @@ class SubmitScoreRequest extends FormRequest
         return [
             'user_id' => ['required', 'string'],
             'score' => ['required', 'numeric'],
-            'level' => ['required', 'numeric']
         ];
     }
 }

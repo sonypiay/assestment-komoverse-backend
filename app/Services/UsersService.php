@@ -10,17 +10,20 @@ use App\Http\Requests\SubmitScoreRequest;
 use App\Http\Resources\UsersResource;
 use App\Repositories\UserRepository;
 use App\Repositories\HistoryScoreRepository;
+use App\Repositories\LevelsRepository;
 
 class UsersService
 {
     /**
      * @var UserRepositoryInterface $userRepository
      * @var HistoryScoreRepository $historyScoreRepository
+     * @var LevelsRepository $levelsRepository
      */
 
     public function __construct(
         protected UserRepository $userRepository,
-        protected HistoryScoreRepository $historyScoreRepository
+        protected HistoryScoreRepository $historyScoreRepository,
+        protected LevelsRepository $levelsRepository
     ) {}
 
     /**
@@ -43,6 +46,8 @@ class UsersService
         }
 
         $result = DB::transaction(function() use ($request) {
+            $getTotalScore = $this->historyScoreRepository->getTotalScoreByUser($request->user_id);
+            $matchLevel = $this->levelsRepository->matchLevel($request->score);
             return $this->historyScoreRepository->submitScore($request);
         });
 

@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Support\Str;
 
 class Levels extends Model
 {
@@ -12,4 +12,15 @@ class Levels extends Model
     protected $keyType = 'string';
     protected $guarded = [];
     public $incrementing = false;
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($model) {
+            $model->id = (string) Str::uuid();
+            $model->created_at = now();
+            $model->updated_at = now();
+        });
+    }
 }

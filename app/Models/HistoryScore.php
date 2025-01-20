@@ -25,7 +25,7 @@ class HistoryScore extends Model
 
         static::creating(function($model) {
             $model->id = (string) Str::uuid();
-            $model->created_at = now();
+            $model->date_created = now();
         });
     }
 

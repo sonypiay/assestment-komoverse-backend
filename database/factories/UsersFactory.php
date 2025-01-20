@@ -22,8 +22,6 @@ class UsersFactory extends Factory
     {
         return [
             'id' => Str::uuid()->toString(),
-            'firstname' => fake()->firstName(),
-            'lastname' => fake()->lastName(),
             'username' => fake()->unique()->userName(),
             'created_at' => now(),
             'updated_at' => now(),
