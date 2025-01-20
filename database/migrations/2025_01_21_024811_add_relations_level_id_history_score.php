@@ -11,16 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_history_score', function (Blueprint $table) {
-            $table->char('id', 36)->primary();
-            $table->char('user_id', 36)->nullable();
-            $table->char('level_id', 36)->nullable();
-            $table->integer('score')->default(0);
-            $table->dateTime('date_created')->nullable();
-
-            $table->foreign('user_id')
-            ->on('tbl_users')
+        Schema::table('tbl_history_score', function (Blueprint $table) {
+            $table->foreign('level_id')
             ->references('id')
+            ->on('tbl_levels')
             ->onUpdate('cascade')
             ->onDelete('set null');
         });
@@ -31,6 +25,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_history_score');
+        Schema::table('tbl_history_score', function (Blueprint $table) {
+            $table->dropForeign('tbl_history_score_level_id_foreign');
+            $table->dropIndex('tbl_history_score_level_id_foreign');
+        });
     }
 };
