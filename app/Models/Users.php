@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Users extends Model
 {
@@ -17,8 +17,8 @@ class Users extends Model
     protected $keyType = "string";
     public $incrementing = false;
 
-    public function userLevel(): HasOne
+    public function historyScore(): HasMany
     {
-        return $this->hasOne(UserLevel::class, 'user_id', 'id')->withDefault();
+        return $this->hasMany(HistoryScore::class, 'user_id');
     }
 }
