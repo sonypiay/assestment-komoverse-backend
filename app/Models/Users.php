@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Users extends Model
 {
@@ -20,5 +21,10 @@ class Users extends Model
     public function historyScore(): HasMany
     {
         return $this->hasMany(HistoryScore::class, 'user_id');
+    }
+
+    public function userLevel(): HasOne
+    {
+        return $this->hasOne(UserLevel::class, 'user_id')->withDefault();
     }
 }
