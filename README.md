@@ -38,13 +38,26 @@ Jalankan migrasi artisan untuk generate table:
 php artisan migrate
 ```
 
-Jalankan seeder
+Jalankan seeder untuk generate data user
 ```
 php artisan db:seed
 ```
+atau
+```
+php artisan db:seed --class=UsersSeeder
+```
 
-### Local Development
 Jalankan aplikasi menggunakan perintah berikut:
 ```
 php artisan serve
+```
+
+Untuk set score secara otomatis, gunakan perintah berikut:
+```
+php artisan db:seed --class=SetScoreSeeder
+```
+
+Untuk mereset ulang semua data, gunakan perintah berikut:
+```
+php artisan db:seed --class=ResetDataSeeder
 ```
