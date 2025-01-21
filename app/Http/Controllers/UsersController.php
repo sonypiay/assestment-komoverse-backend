@@ -9,14 +9,25 @@ use App\Services\UsersService;
 
 class UsersController extends Controller
 {
-    public function __construct(protected UsersService $usersService)
+    /**
+     * @var UsersService $usersService
+     */
+    protected UsersService $usersService;
+
+    public function __construct()
     {
+        $this->usersService = new UsersService;
     }
 
     public function findAll(Request $request)
     {
         try {
-            return response()->json($this->usersService->findAll($request), HttpStatus::OK->value);
+            $response = [
+                'data' => $this->usersService->findAll($request),
+                'message' => 'OK',
+            ];
+
+            return response()->json($response, HttpStatus::OK->value);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -26,6 +37,19 @@ class UsersController extends Controller
     {
         try {
             return response()->json($this->usersService->submitScore($request), HttpStatus::CREATED->value);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function getLeaderboard(Request $request)
+    {
+        try {
+            $response = [
+                'data' => $this->usersService->getLeaderboard($request),
+                'message' => 'OK',
+            ];
+            return response()->json($response, HttpStatus::OK->value);
         } catch (\Throwable $th) {
             throw $th;
         }

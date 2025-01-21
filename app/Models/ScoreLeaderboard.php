@@ -3,14 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
-class Levels extends Model
+class ScoreLeaderboard extends Model
 {
-    protected $table = 'tbl_levels';
-    protected $primaryKey = 'id';
-    protected $keyType = 'string';
+    protected $table = "tbl_score_leaderboard";
+    protected $primaryKey = "id";
     protected $guarded = [];
+    protected $keyType = "string";
     public $incrementing = false;
 
     protected static function boot()
@@ -22,5 +23,14 @@ class Levels extends Model
             $model->created_at = now();
             $model->updated_at = now();
         });
+
+        static::saving(function($model) {
+            $model->updated_at = now();
+        });
+    }
+
+    public function users(): BelongsTo
+    {
+        return $this->belongsTo(Users::class, 'user_id');
     }
 }

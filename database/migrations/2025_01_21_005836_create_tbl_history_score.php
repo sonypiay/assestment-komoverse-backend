@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tbl_history_score', function (Blueprint $table) {
             $table->char('id', 36)->primary();
             $table->char('user_id', 36)->nullable();
-            $table->char('level_id', 36)->nullable();
+            $table->unsignedInteger('level')->default(0);
             $table->integer('score')->default(0);
             $table->dateTime('date_created')->nullable();
 

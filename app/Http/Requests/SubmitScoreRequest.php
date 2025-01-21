@@ -24,6 +24,24 @@ class SubmitScoreRequest extends FormRequest
         return [
             'user_id' => ['required', 'string'],
             'score' => ['required', 'numeric'],
+            'level' => ['required', 'numeric']
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'user_id.required' => 'A user id must required',
+            'user_id.string' => 'User id must be a string',
+            'score.required' => 'Score must required',
+            'score.numeric' => 'Score must be a numeric',
+            'level.required' => 'Level must required',
+            'level.numeric' => 'Level must be a numeric'
         ];
     }
 }

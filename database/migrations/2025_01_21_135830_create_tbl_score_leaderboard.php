@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_levels', function (Blueprint $table) {
+        Schema::create('tbl_score_leaderboard', function (Blueprint $table) {
             $table->char('id', 36)->primary();
-            $table->string('name', 100);
-            $table->unsignedInteger('min_score')->default(0);
+            $table->char('user_id', 36)->nullable();
+            $table->unsignedInteger('level')->default(0);
+            $table->unsignedInteger('score')->default(0);
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_levels');
+        Schema::dropIfExists('tbl_score_leaderboard');
     }
 };

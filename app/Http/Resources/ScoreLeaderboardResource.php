@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UsersResource extends JsonResource
+class ScoreLeaderboardResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,10 +15,10 @@ class UsersResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'user_id' => $this->id,
-            'username' => $this->username,
-            'history_score' => HistoryScoreResource::collection($this->historyScore),
-            'highest_score' => $this->scoreLeaderboard->score ?? 0,
+            'username' => $this->users->username,
+            'level' => $this->level,
+            'score' => $this->score,
+            'last_updated' => $this->updated_at
         ];
     }
 }

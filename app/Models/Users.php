@@ -20,11 +20,11 @@ class Users extends Model
 
     public function historyScore(): HasMany
     {
-        return $this->hasMany(HistoryScore::class, 'user_id');
+        return $this->hasMany(HistoryScore::class, 'user_id')->orderBy('date_created', 'desc');
     }
 
-    public function userLevel(): HasOne
+    public function scoreLeaderboard(): HasOne
     {
-        return $this->hasOne(UserLevel::class, 'user_id')->withDefault();
+        return $this->hasOne(ScoreLeaderboard::class, 'user_id')->withDefault();
     }
 }

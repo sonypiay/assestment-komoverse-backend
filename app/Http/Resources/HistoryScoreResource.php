@@ -15,10 +15,9 @@ class HistoryScoreResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
-            'users' => new UsersResource($this->users),
             'level' => $this->level,
             'score' => $this->score,
+            'date_created' => $this->date_created,
         ];
     }
 }
