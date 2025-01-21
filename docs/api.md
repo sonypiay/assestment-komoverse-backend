@@ -6,6 +6,8 @@ Endpoint: GET /api/users
 
 Query Params
 - username: search by username, optional
+- page: number of page, optional,
+- rows: limit rows per page, optional
 
 Response Body Success:
 ```
@@ -41,6 +43,8 @@ Endpoint: GET /api/users/score/leaderboard
 
 Query Params
 - username: search by username, optional
+- page: number of page, optional,
+- rows: limit rows per page, optional
 
 Response Body Success:
 ```
