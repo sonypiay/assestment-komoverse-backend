@@ -9,7 +9,7 @@ use App\Models\Users;
 use App\Models\HistoryScore;
 use App\Models\ScoreLeaderboard;
 
-class SetScoreSeeder extends Seeder
+class ResetDataSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,18 +19,7 @@ class SetScoreSeeder extends Seeder
         DB::transaction(function() {
             HistoryScore::whereRaw(1)->delete();
             ScoreLeaderboard::whereRaw(1)->delete();
-
-            Users::all()
-            ->lazy(100)
-            ->each(function($users) {
-                $score = mt_rand(1000,9999);
-
-                HistoryScore::create([
-                    'user_id' => $users->id,
-                    'level' => 1,
-                    'score' => $score,
-                ]);
-            });
+            Users::whereRaw(1)->delete();
         });
     }
 }
