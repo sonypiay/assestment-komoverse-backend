@@ -22,9 +22,4 @@ class Users extends Model
     {
         return $this->hasMany(HistoryScore::class, 'user_id')->orderBy('date_created', 'desc');
     }
-
-    public function scoreLeaderboard(): HasOne
-    {
-        return $this->hasOne(ScoreLeaderboard::class, 'user_id')->withDefault();
-    }
 }

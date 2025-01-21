@@ -18,7 +18,6 @@ class SetScoreSeeder extends Seeder
     {
         DB::transaction(function() {
             HistoryScore::whereRaw(1)->delete();
-            ScoreLeaderboard::whereRaw(1)->delete();
 
             Users::all()
             ->lazy(100)

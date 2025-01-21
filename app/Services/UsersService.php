@@ -9,10 +9,8 @@ use App\Exceptions\ResponseStatusException;
 use App\Http\Requests\SubmitScoreRequest;
 use App\Http\Resources\HistoryScoreResource;
 use App\Http\Resources\UsersResource;
-use App\Http\Resources\ScoreLeaderboardResource;
 use App\Repositories\UserRepository;
 use App\Repositories\HistoryScoreRepository;
-use App\Repositories\ScoreLeaderboardRepository;
 use Illuminate\Support\Facades\Cache;
 
 class UsersService
@@ -27,15 +25,9 @@ class UsersService
      */
     protected HistoryScoreRepository $historyScoreRepository;
 
-    /**
-     * @var ScoreLeaderboardRepository $scoreLeaderboardRepository
-     */
-    protected ScoreLeaderboardRepository $scoreLeaderboardRepository;
-
     public function __construct() {
         $this->userRepository = new UserRepository;
         $this->historyScoreRepository = new HistoryScoreRepository;
-        $this->scoreLeaderboardRepository = new ScoreLeaderboardRepository;
     }
 
     /**
@@ -88,12 +80,6 @@ class UsersService
                 'level' => $userLevel,
                 'score' => $request->score,
             ]);
-
-            $this->scoreLeaderboardRepository->saveScore(
-                $request->user_id,
-                $userLevel,
-                $request->score
-            );
             
             return [
                 'user_id' => $submitScore->user_id,

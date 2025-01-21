@@ -18,7 +18,6 @@ class ResetDataSeeder extends Seeder
     {
         DB::transaction(function() {
             HistoryScore::whereRaw(1)->delete();
-            ScoreLeaderboard::whereRaw(1)->delete();
             Users::whereRaw(1)->delete();
         });
     }
