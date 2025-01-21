@@ -17,8 +17,8 @@ class UsersResource extends JsonResource
         return [
             'user_id' => $this->id,
             'username' => $this->username,
-            'history_score' => HistoryScoreResource::collection($this->historyScore),
-            'highest_score' => $this->scoreLeaderboard->score ?? 0,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }

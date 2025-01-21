@@ -50,4 +50,12 @@ class UserRepository
     {
         return $this->users->find($userId);
     }
+
+    /**
+     * @var string $username
+     */
+    public function findByUsername(string $username)
+    {
+        return $this->users->where('username', $username)->first();
+    }
 }
