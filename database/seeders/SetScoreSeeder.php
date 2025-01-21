@@ -22,7 +22,7 @@ class SetScoreSeeder extends Seeder
             Users::all()
             ->lazy(100)
             ->each(function($users) {
-                $score = mt_rand(1000,9999);
+                $score = mt_rand(100000,999999);
 
                 HistoryScore::create([
                     'user_id' => $users->id,
