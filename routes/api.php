@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ThirdPartyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 
@@ -10,3 +11,5 @@ Route::prefix('users')->group(function() {
         Route::post('/score/submit', 'submitScore');
     });
 });
+
+Route::get('assessment', [ThirdPartyController::class, 'assessment']);
