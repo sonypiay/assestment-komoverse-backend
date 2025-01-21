@@ -51,6 +51,7 @@ class HistoryScoreRepository
                 DB::raw('MAX(level) AS last_level'),
                 DB::raw('SUM(score) AS total_score')
             ])
+            ->when($request->username, fn($query) => $query->whereHas('users', fn($query) => $query->where('username', $request->username)))
             ->groupBy('user_id')
             ->orderBy('score', 'desc')
             ->paginate($request->rows ?? 10)
