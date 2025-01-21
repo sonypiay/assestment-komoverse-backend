@@ -11,7 +11,6 @@ use App\Http\Resources\HistoryScoreResource;
 use App\Http\Resources\UsersResource;
 use App\Repositories\UserRepository;
 use App\Repositories\HistoryScoreRepository;
-use Illuminate\Support\Facades\Cache;
 
 class UsersService
 {
@@ -45,20 +44,7 @@ class UsersService
      */
     public function getLeaderboard(Request $request)
     {
-        $cacheKey = "leaderboard";
-        $page = $request->page ?? 1;
-
-        $leaderboard = Cache::remember("{$cacheKey}_page_{$page}", 120, function() use ($request) {
-            return $this->historyScoreRepository->findAll($request);
-        });
-
-        if( $request->has('username') AND ! empty( $request->username ) ) {
-            $users = $this->userRepository->findByUsername($request->username);
-            if( ! $users ) throw new ResponseStatusException("User not found", HttpStatus::NOT_FOUND->value);
-
-            $leaderboard = $leaderboard->where('user_id', $users->id);
-        }
-
+        $leaderboard = $this->historyScoreRepository->findAll($request);
         return HistoryScoreResource::collection($leaderboard);
     }
 
