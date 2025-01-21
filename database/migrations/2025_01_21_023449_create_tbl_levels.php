@@ -15,7 +15,6 @@ return new class extends Migration
             $table->char('id', 36)->primary();
             $table->string('name', 100);
             $table->unsignedInteger('min_score')->default(0);
-            $table->unsignedInteger('max_score')->default(0);
             $table->timestamps();
         });
     }
