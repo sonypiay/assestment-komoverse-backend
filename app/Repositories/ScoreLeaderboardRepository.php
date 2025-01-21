@@ -46,7 +46,7 @@ class ScoreLeaderboardRepository
     public function findAll($request): mixed
     {
         return $this->scoreLeaderboard
-            ->when($request->username, fn($query) => $query->where('username', 'like', '%' . $request->username . '%'))
+            ->when($request->username, fn($query) => $query->whereHas('users', fn($query) => $query->where('username', 'like', '%' . $request->username . '%')))
             ->orderBy('score', 'desc')
             ->paginate($request->rows ?? 10)
             ->appends($request->all());
