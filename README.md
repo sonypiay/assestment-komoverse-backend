@@ -20,15 +20,8 @@ Generate APP_KEY menggunakan perintah berikut:
 php artisan key:generate --ansi
 ```
 
-Ubah konfigurasi .env pada variable berikut:
+Tambahkan variable pada file .env berikut:
 ```
-DB_CACHE_CONNECTION=${DB_CONNECTION}
-DB_CACHE_TABLE=tbl_cache
-DB_CACHE_LOCK_CONNECTION=${DB_CONNECTION}
-DB_CACHE_LOCK_TABLE=tbl_cache_lock
-
-CACHE_PREFIX=cache_app
-
 UNISYNC_SECRET_KEY=
 UNISYNC_ENDPOINT=
 ```
