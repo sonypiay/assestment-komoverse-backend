@@ -17,17 +17,14 @@ class LevelsSeeder extends Seeder
             [
                 'name' => 'Low Rank',
                 'min_score' => 0,
-                'max_score' => 1000,
             ],
             [
                 'name' => 'High Rank',
-                'min_score' => 1001,
-                'max_score' => 5000,
+                'min_score' => 501,
             ],
             [
                 'name' => 'Master Rank',
-                'min_score' => 5001,
-                'max_score' => 10000,
+                'min_score' => 1000,
             ],
         ];
 
